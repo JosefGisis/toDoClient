@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+  
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatable" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+        <title>Home Page</title>
+  
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" type="text/css" href="style.css">
+  
+    </head>
+    
+    <body class="bg-sky-950 | text-slate-50 | font-sans | p-2.5">
+
+        <header id="primary-header">
+            <div class="responsive-container">
+                <div class="text-center w-full | p-6">
+                    <h1 class="text-4xl font-bold italic">HAVE YOU?</h1>
+                </div>
+            </div>
+        </header>
+
+
+        <main>
+            <div class="responsive-container | my-5 | min-h-[75vh]">
+               
+                <!-- this div contains buttons to change, delete, and add todo lists -->
+                <div class="flex flex-row content-center items-center justify-center">
+
+                    <!-- Button to change the current list -->
+                    <div class="pt-5 mx-4 | flex flex-col content-center items-center">
+        
+                        <div id="change-list-button" class="peer | w-fit | p-4 rounded-lg | bg-slate-700 hover:bg-slate-600 | transition-all">
+                            <img src="/images/list-selection-icon-alternative.svg" alt="icon for list change button" class="w-8 h-8 sm:w-10 sm:h-10">         
+                        </div>
+        
+                        <div class="opacity-20 peer-hover:opacity-40 | transition-all | pt-2">
+                            <p class="text-center">Change List</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Button to add new todo lists -->
+                    <div class="pt-5 mx-4 | flex flex-col content-center items-center">
+                   
+                        <div id="new-list-button" class="peer | w-fit | p-4 rounded-lg | bg-slate-700 hover:bg-slate-600 | transition-all">
+                            <img src="/images/new_list.svg" alt="icon for new list button" class="w-8 h-8 sm:w-10 sm:h-10">         
+                        </div>
+                      
+                        <div class="opacity-20 peer-hover:opacity-40 | transition-all | pt-2">
+                            <p class="text-center">Create List</p>
+                        </div>
+                    </div>
+
+                    <!-- Button to delete todo lists -->
+                    <div class="pt-5 mx-4 | flex flex-col content-center items-center">
+
+                        <div id="delete-list-button" class="peer | w-fit | p-4 rounded-lg | bg-slate-700 hover:bg-slate-600 | transition-all">
+                            <img src="/images/delete_list.svg" alt="icon for deleting list button" class="w-8 h-8 sm:w-10 sm:h-10">         
+                        </div>
+
+                        <div class="opacity-20 peer-hover:opacity-40 | transition-all | pt-2">
+                            <p class="text-center">Delete List</p>
+                        </div>
+                    </div>
+    
+                </div>
+
+   
+                <!-- This section contains responsive forms to change, add, and delete lists -->
+               
+                <!-- Toggled form to change current list -->
+                <div id="change-list" class="flex flex-col items-center sm:items-start | bg-slate-700 | p-6 my-5 | hidden">
+    
+                    <h3 class="text-2xl | mb-5">Change ToDo List</h3>  
+                        
+                    <div class="text-black | p-1">
+                        <select class="p-1 min-w-[8rem] | rounded-md | focus:outline-sky-500" id="list-change-menu">
+                        </select>
+                    </div>
+        
+                    <div class="my-2">
+                        <button id="change-list-cancel" class="bg-sky-500 | w-20 py-2 px-3 mr-1 mt-5 | rounded-md focus:outline-sky-500" type="cancel">cancel</button>
+                        <button id="change-list-submit" class="bg-sky-800 | w-20 py-2 px-3 ml-1 mt-5 | rounded-md focus:outline-sky-500 hover:bg-sky-500" type="submit">change</button>
+                    </div>
+                
+                </div>
+
+               
+                <!-- Toggled form to create new lists -->
+                <div id="new-list" class="flex flex-col items-center sm:items-start | bg-slate-700 | p-6 my-5 | hidden">
+                    
+                    <h3 class="text-2xl | mb-5">Enter New List Information</h3>
+                        
+                    <div class="my-2">
+                        <p class="my-2">List Title:</p>
+                        <input class="text-black | p-1 | rounded-md focus:outline-sky-500" type="text" id="new-list-title" required>     
+                    </div>
+                    
+                    <div class="my-2">
+                        <p class="my-2">List Description:</p>
+                        <textarea class="text-black | p-1 | rounded-md focus:outline-sky-500" id="new-list-description" cols="25" rows="3" placeholder="optional: provide a brief list description"></textarea>
+                    </div>
+                    
+                    <div class="my-2">
+                        <button id="new-list-cancel" class="bg-sky-500 | w-20 py-2 px-3 mr-1 mt-5 | rounded-md focus:outline-sky-500" type="cancel">cancel</button>
+                        <button id="new-list-submit" class="bg-sky-800 | w-20 py-2 px-3 ml-1 mt-5 | rounded-md focus:outline-sky-500" type="submit">submit</button>
+                    </div>
+            
+                </div>
+
+
+                <!-- Toggled form to delete current list -->
+                <div id="delete-list" class="bg-slate-700 | p-6 my-5 | hidden">
+
+                    <h2 class="text-3xl text-center text-rose-400 | mb-5">CAUTION!</h2>
+    
+                    <h3 class="text-lg text-center | mb-6">This action is irreversible. Deleting this list will permanently remove all its contents. Proceed?</h3>
+                            
+                    <div class="flex content-center items-center justify-center | my-2">
+                        <button id="delete-list-cancel" class="bg-sky-500 | w-20 py-2 px-3 mx-2 | rounded-md focus:outline-sky-500" type="cancel">NO</button>
+                        <button id="delete-list-submit" class="bg-sky-800 hover:bg-sky-500 | w-20 py-2 px-3 mx-2 | rounded-md focus:outline-sky-500 | transition-all" type="submit">YES!</button>
+                    </div>
+                
+                </div>
+
+               
+                <!-- This section displays current list, new to-do form and to-dos -->
+
+                <!-- Line before todos -->
+                <div class="my-7">
+                    <hr class="border-2 border-dashed border-sky-800">
+                </div>
+                
+                <!-- current list and todos -->
+                <div id="list-container" class="bg-slate-700 | px-4 py-6 | min-h-[30rem]">
+                    
+                    <div id="current-list-section">
+
+                    </div>
+                    <!-- new todo form. List title is placed before and todos are appended after -->
+                    <div id="new-todo-form">
+                        
+                        <div class="max-w-[640px] | bg-slate-800 | p-4 my-4 | rounded-lg">
+                            <h3 class="text-2xl | mb-5">Add New To-do</h3>  
+                            <div class="flex flex-col sm:flex-row">
+                                <input class="text-black | max-w-[15rem] my-2 p-1 mr-4 | h-10 | rounded-md focus:outline-sky-500" type="text" id="new-todo-title" name="new-todo-title" placeholder="new to-do title" required>
+                                <input class="text-black | max-w-[15rem] my-2 p-1 mr-4 | h-10 | rounded-md focus:outline-sky-500" type="date" id="new-todo-due-date" placeholder="mm/dd/yyyy">
+                                <button id="new-todo-submit" class="bg-sky-800 | my-2 w-20 h-10 | rounded-md focus:outline-sky-500" type="submit">submit</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="todo-section">
+
+                    </div>
+                
+                </div>
+
+                <!-- Line after todos -->
+                <div class="my-7">
+                    <hr class="border-2 border-dashed border-sky-800">
+                </div>
+                
+            </div>
+        </main>
+
+
+        <footer id="primary-footer">
+            <div class="responsive-container">
+                <div class="p-2">
+                    <p class="text-center">Designed by Josef Gisis 2023</p>
+                </div>
+            </div>
+        </footer>
+
+
+        <script type="module" src="./js/controller/controller.js"></script>
+  
+    </body>
+
+</html>
